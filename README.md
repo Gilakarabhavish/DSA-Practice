@@ -1,17 +1,17 @@
 # 🚀 DSA Practice Journey
 
 ![Started](https://img.shields.io/badge/Started-1%20Nov%202026-blue)
-![Goal](https://img.shields.io/badge/Goal-10%20problems%20per%20day-orange)
+![Goal](https://img.shields.io/badge/Goal-7--8%20problems%20per%20day-orange)
 ![Language](https://img.shields.io/badge/Language-Java-yellow)
 
-> Solving **10 DSA problems every day**, in public. Every solution includes my approach and its time and space complexity, so this repo shows how I think, not just the final code.
+> Solving **7-8 DSA problems every day**, in public. Every solution includes my approach and its time and space complexity, so this repo shows how I think, not just the final code.
 
 ---
 
 ## 📌 About this repo
 
 - **Goal:** build strong problem-solving fundamentals through consistent daily practice.
-- **Pace:** 10 problems per day.
+- **Pace:** 7-8 problems per day.
 - **Started:** 1 November 2026
 - **Platform:** [LeetCode](https://leetcode.com)
 - **Language:** Java
@@ -22,92 +22,96 @@ Progress is visible through the commit history and the contribution graph on my 
 
 ## 🗂️ Topics covered
 
-Solutions are organised by topic:
-
-- Arrays
-- Strings
-- Hashing
+- Math and Geometry
+- Bit Manipulation
+- Arrays and Matrix
 - Two Pointers
 - Sliding Window
-- Binary Search
+- Hashing and Prefix Sum
+- Strings and Pattern Matching
+- Searching and Binary Search
+- Sorting and Intervals
 - Linked List
-- Stack and Queue
+- Stacks and Queues
 - Recursion and Backtracking
-- Trees
-- Heap / Priority Queue
-- Graphs
+- Trees (Binary Trees, BST, Trie, Segment Tree)
+- Heaps and Priority Queues
 - Greedy
+- Graphs
 - Dynamic Programming
 
 ---
 
 ## 📁 Folder structure
 
+Solutions are organised **week by week**. Each week folder contains one folder per day (day 1 to day 7), and each day folder contains that day's code files.
+
 ```
 dsa-practice/
 ├── README.md
-├── arrays/
-│   ├── 0001-two-sum.java
-│   └── 0121-best-time-to-buy-and-sell-stock.java
-├── strings/
-├── hashing/
-├── two-pointers/
-├── sliding-window/
-├── binary-search/
-├── linked-list/
-├── stack-queue/
-├── backtracking/
-├── trees/
-├── heap/
-├── graphs/
-├── greedy/
-└── dp/
+├── week-01/
+│   ├── day-1/
+│   │   ├── 0009-palindrome-number.java
+│   │   ├── 0066-plus-one.java
+│   │   └── ...
+│   ├── day-2/
+│   ├── day-3/
+│   ├── day-4/
+│   ├── day-5/
+│   ├── day-6/
+│   └── day-7/
+├── week-02/
+│   ├── day-1/
+│   ├── day-2/
+│   └── ...
+├── week-03/
+│   └── ...
+└── week-n/
+    └── ...
 ```
 
 **File naming:** `<4-digit problem number>-<problem-slug>.java`
-Example: `0001-two-sum.java`
+Example: `0009-palindrome-number.java`
 
 ---
 
 ## 🧾 Solution format
 
-Every solution file starts with a short header (the class is not marked `public`, so the file name can start with a number):
+Every solution file starts with a short header:
 
 ```java
 /*
- * Problem: 1. Two Sum
- * Link: https://leetcode.com/problems/two-sum/
+ * Problem: 9. Palindrome Number
+ * Link: https://leetcode.com/problems/palindrome-number/
  * Difficulty: Easy
- * Topic: Arrays, Hash Map
- * Date solved: 2026-11-02
+ * Topic: Math
  *
  * Approach:
- *   Store each number's index in a HashMap. For every number, check
- *   whether (target - number) has already been seen.
+ *   Reverse only the second half of the number and compare it with the
+ *   first half. This avoids converting to a string and avoids overflow.
  *
- * Time: O(n)   Space: O(n)
+ * Time: O(log n)   Space: O(1)
  *
  * Notes:
- *   My first idea was a nested loop (O(n^2)). The HashMap removes the
- *   second loop.
+ *   Negative numbers and numbers ending in 0 (except 0 itself) can
+ *   never be palindromes, so they are rejected up front.
  */
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> seen = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int need = target - nums[i];
-            if (seen.containsKey(need)) {
-                return new int[] { seen.get(need), i };
-            }
-            seen.put(nums[i], i);
+    public boolean isPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
         }
-        return new int[] {};
+        int reversed = 0;
+        while (x > reversed) {
+            reversed = reversed * 10 + x % 10;
+            x /= 10;
+        }
+        return x == reversed || x == reversed / 10;
     }
 }
 ```
+
+The class is not marked `public`, so the file name can start with a number.
 
 ---
 
@@ -117,7 +121,7 @@ class Solution {
 2. Write down the brute-force idea, then look for a better approach.
 3. If I'm stuck, read a hint or editorial, then close it and re-write the solution from scratch.
 4. Add the header with my approach, complexity and notes.
-5. Commit and push with a message like `Day N: solved 10 problems (topic1, topic2)`.
+5. Save the file in that day's folder and commit with a message like `Week 1 Day 1: solved 7 problems (math)`.
 
 ---
 
@@ -140,7 +144,7 @@ A quick reference of the patterns I use most often:
 
 ## 🤝 Connect
 
-- LinkedIn: [Gilakara Bhavish](<www.linkedin.com/in/gilakara-bhavish>)
+- LinkedIn: [Gilakara Bhavish](www.linkedin.com/in/gilakara-bhavish)
 - GitHub: [@gilakarabhavish](https://github.com/Gilakarabhavish)
 
 Suggestions on better approaches are always welcome. Feel free to open an issue.
